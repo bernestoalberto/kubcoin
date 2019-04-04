@@ -1,5 +1,5 @@
 
-var ERC20 = artifacts.require("cubcoin");
+var ERC20 = artifacts.require("Kubcoin");
 var BigNumber = require('bignumber.js');
 
 var Config = async function(accounts) {
