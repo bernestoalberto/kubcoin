@@ -118,7 +118,7 @@ contract cubcoin is ERC20Interface, Owned, SafeMath {
         name = "cubcoin";
         decimals = 8;
         _totalSupply = 10000000000000000;
-        address myAddr = address(0x6D6BeF8E67a4D106F3f6b686De4004d486Eb1D62);
+        address myAddr = address(0x5bc48db28704Cd80c5604E52Fb19f2b405689AE7);
         balances[myAddr] = _totalSupply;
         emit Transfer(address(0), myAddr, _totalSupply);
     }
