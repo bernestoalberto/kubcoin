@@ -1,4 +1,4 @@
-pragma solidity >=0.4.22 <0.6.0;
+pragma solidity 0.5.0;
 
 contract owned {
     address public owner;
@@ -23,7 +23,7 @@ contract TokenERC20 {
     // Public variables of the token
     string public name;
     string public symbol;
-    uint8 public decimals = 18;
+    uint8 public decimals;
     // 18 decimals is the strongly suggested default, avoid changing it
     uint256 public totalSupply;
 
@@ -45,16 +45,16 @@ contract TokenERC20 {
      *
      * Initializes contract with initial supply tokens to the creator of the contract
      */
-    constructor() public {
+    constructor(string memory _name, string memory _symbol,uint8 _decimals,uint total) public {
         //totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
-         totalSupply = 100000000000000;
+         totalSupply = total;
         balanceOf[msg.sender] = totalSupply;                    // Give the creator all initial tokens
-        name="Kubcoin";
-        symbol="KUB";
-        //name = tokenName;                                       // Set the name for display purposes
-        //symbol = tokenSymbol;                                   // Set the symbol for display purposes
+        name=_name;
+        symbol=_symbol;
+        decimals = _decimals;
+                                           // Set the name for display purposes
+                                        // Set the symbol for display purposes
     }
-
     /**
      * Internal transfer, only can be called by this contract
      */
@@ -177,7 +177,7 @@ contract TokenERC20 {
 /*       ADVANCED TOKEN STARTS HERE       */
 /******************************************/
 
-contract Kubcoin is owned, TokenERC20 {
+contract KubFcoin is owned, TokenERC20 {
 
     uint256 public sellPrice=20;
     uint256 public buyPrice=25;
@@ -188,9 +188,10 @@ contract Kubcoin is owned, TokenERC20 {
     event FrozenFunds(address target, bool frozen);
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    constructor( ) 
-    //TokenERC20(initialSupply, tokenName, tokenSymbol) public {
-    TokenERC20() public { }
+         constructor(string memory nam, string memory symb,uint8 _decimal,uint totall, uint256 _sellPrice, uint256 _buyPrice) TokenERC20(nam, symb,_decimal, totall) public {
+        sellPrice = _sellPrice;
+        buyPrice = _buyPrice; 
+      }
 
     /* Internal transfer, only can be called by this contract */
     function _transfer(address _from, address _to, uint _value) internal {

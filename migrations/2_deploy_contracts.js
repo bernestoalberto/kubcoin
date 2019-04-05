@@ -1,7 +1,5 @@
-let ERC20 = artifacts.require("Kubcoin");
-
+let kubFcoin = artifacts.require("KubFcoin");
 
 module.exports = function(deployer) {
-    deployer.deploy(ERC20);
-
+    deployer.deploy(kubFcoin,"KubFcoin","KUBF",8,1000000000,35,50);
 }

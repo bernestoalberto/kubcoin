@@ -1,5 +1,6 @@
 
-var ERC20 = artifacts.require("Kubcoin");
+var KubFcoin = artifacts.require("KubFcoin");
+let TokenERC20 = artifacts.require("TokenERC20");
 var BigNumber = require('bignumber.js');
 
 var Config = async function(accounts) {
@@ -7,6 +8,7 @@ var Config = async function(accounts) {
     // These test addresses are useful when you need to add
     // multiple users in test scripts
     let testAddresses = [
+        "0x5bc48db28704Cd80c5604E52Fb19f2b405689AE7",
         "0x69e1CB5cFcA8A311586e3406ed0301C06fb839a2",
         "0xF014343BDFFbED8660A9d8721deC985126f189F3",
         "0x0E79EDbD6A727CfeE09A2b1d0A59F7752d5bf7C9",
@@ -22,14 +24,16 @@ var Config = async function(accounts) {
     let owner = accounts[0];
     let tokenAddress = accounts[1];
 
-    let erc20 = await ERC20.new();
+    let kubFcoin = await new KubFcoin;
+    let tokenerc20 = await new TokenERC20;
 
     
     return {
         owner: owner,
         tokenAddress: tokenAddress,
         weiMultiple: (new BigNumber(10)).pow(18),
-        erc20: erc20
+        kubFcoin: kubFcoin,
+        tokenerc20: tokenerc20
     }
 }
 

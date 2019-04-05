@@ -2,7 +2,7 @@ const Test = require('../config/testConfig.js')
 //const truffleAssert = require('truffle-assertions')
 
 contract('Cuba Coin Tests', async (accounts) => {
-  var config
+  
   // Operations and Settings
   // !!!!Warning: .toWei() returns a string
   /*const minFund = web3.utils.toWei('10', 'ether')
@@ -15,12 +15,13 @@ contract('Cuba Coin Tests', async (accounts) => {
   const flightRef = 'AF0187'*/
 
   before('setup contract', async () => {
-    config = await Test;
-    await config.er20.new()
+    var config = Test;
+    console.log(config);
+    await new  config.kubcoin
   })
 
   it('Get Owners Balance ', async () => {
-    let balance = config.er20.balanceOf(accounts[0])
+    let balance = config.kubcoin.balanceOf(accounts[0])
     assert.equal(balance, 100000000)
   })
 });
